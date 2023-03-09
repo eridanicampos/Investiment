@@ -1,0 +1,42 @@
+<mat-card style="width:50%">
+    <mat-card-header>
+        <mat-card-title>
+           CDB
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+            <form #userForm="ngForm" [formGroup]="frm" (ngSubmit)="calcularInvestimento()">
+            
+            <p>
+                <mat-form-field class="w-80">
+                   <mat-label>Valor</mat-label>
+                   <input matInput formControlName="amount" [errorStateMatcher]="errorMatcher">
+                   <mat-error *ngIf="f['amount'].errors?.['required']">
+                    Valor é requerido
+                   </mat-error>
+                 </mat-form-field>
+               </p>
+               <p>
+                <mat-form-field class="w-80">
+                    <mat-label>Prazo</mat-label>
+                    <input matInput formControlName="months" [errorStateMatcher]="errorMatcher" >
+                    <mat-error *ngIf="f['months'].errors?.['required']">
+                      Email is required
+                    </mat-error>
+
+                    <mat-error *ngIf="f['months'].errors?.['months']">
+                        Prazo Invalido
+                      </mat-error>
+                 
+                </mat-form-field>
+               </p>
+               <p>
+                  <button type="submit" mat-raised-button color="primary" [disabled]="frm.invalid">Calcular investimento</button>
+               </p>
+          </form>
+          <p>
+            <mat-label>O resultado do Calculo de CDB : {{result}} </mat-label>
+          </p>
+    </mat-card-content>
+  
+</mat-card>
